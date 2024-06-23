@@ -11,6 +11,10 @@ format:
 
 # Introduction
 
+```{r, echo=FALSE}
+set.seed(1234)
+```
+
 This section is focused on using the `bayesTPC` package to fit TPCs to data using the methods we've explored in the Bayesian lectures and the first two activities. Here we won't be talking much about the implementation, but instead will rely on the `bayesTPC` package and it's functions to allow us to specify, fit, and analyze the data.
 
 # Packages and tools
@@ -341,6 +345,11 @@ We will use a second example to explore simple modifications that can be made to
 ## Fitting with default settings
 
 The default priors chosen in `bayesTPC` are generally as non-restrictive as possible, which can lead to inappropriate fits when the response trait is very close to zero. In this case it may be necessary to modify the priors. It is also possible that mixing may be poor with the default sampler, and so we may need to update the sampling method. We briefly show these issues using the development rate data as an example. These data are also numeric and we assume, again, a Briere functional response:
+
+```{r, echo=FALSE}
+set.seed(4321)
+```
+
 
 ```{r, results = F}
 #| cache: true
