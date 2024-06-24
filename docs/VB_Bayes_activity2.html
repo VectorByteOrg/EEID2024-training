@@ -451,12 +451,12 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu
-[1,] 1.818341
-[2,] 1.806746
-[3,] 1.834076
-[4,] 1.789016
-[5,] 1.814129
-[6,] 1.762154</code></pre>
+[1,] 1.829679
+[2,] 1.856302
+[3,] 1.749226
+[4,] 1.828254
+[5,] 1.805686
+[6,] 1.873544</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -527,12 +527,12 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mu
-[1,] 1.762610
-[2,] 1.859333
-[3,] 1.700147
-[4,] 1.863679
-[5,] 1.759809
-[6,] 1.783781</code></pre>
+[1,] 1.807060
+[2,] 1.794516
+[3,] 1.742811
+[4,] 1.857771
+[5,] 1.749930
+[6,] 1.851768</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -573,12 +573,12 @@ Sample size per chain = 10000
    plus standard error of the mean:
 
           Mean             SD       Naive SE Time-series SE 
-     1.8044403      0.0528591      0.0005286      0.0005286 
+     1.8049696      0.0521331      0.0005213      0.0005196 
 
 2. Quantiles for each variable:
 
  2.5%   25%   50%   75% 97.5% 
-1.700 1.769 1.804 1.840 1.907 </code></pre>
+1.703 1.770 1.805 1.840 1.908 </code></pre>
 </div>
 </div>
 <p>Let’s compare these draws to what we got with our analytic solution:</p>
@@ -733,13 +733,13 @@ Sample size per chain = 10000
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcmc.out2<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           mu          s2       tau
-[1,] 1.794953 0.012233658  81.74170
-[2,] 1.758111 0.012233658  81.74170
-[3,] 1.794661 0.012233658  81.74170
-[4,] 1.794661 0.009709681 102.99000
-[5,] 1.794661 0.024846288  40.24746
-[6,] 1.794661 0.024846288  40.24746</code></pre>
+<pre><code>           mu         s2      tau
+[1,] 1.818048 0.01187930 84.18003
+[2,] 1.818048 0.01545980 64.68389
+[3,] 1.790069 0.01545980 64.68389
+[4,] 1.829652 0.02009706 49.75853
+[5,] 1.739728 0.02009706 49.75853
+[6,] 1.839677 0.02009706 49.75853</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>samp2<span class="ot">&lt;-</span><span class="fu">as.mcmc</span>(mcmc.out2<span class="sc">$</span>chain1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -765,17 +765,17 @@ Sample size per chain = 10000
 1. Empirical mean and standard deviation for each variable,
    plus standard error of the mean:
 
-        Mean       SD  Naive SE Time-series SE
-mu   1.80621  0.05220 0.0005220      0.0012089
-s2   0.02539  0.01737 0.0001737      0.0003839
-tau 52.04239 25.42635 0.2542635      0.6078854
+        Mean      SD Naive SE Time-series SE
+mu   1.80605  0.0532 0.000532      0.0011476
+s2   0.02531  0.0173 0.000173      0.0004349
+tau 52.36136 26.3000 0.263000      0.6804317
 
 2. Quantiles for each variable:
 
          2.5%      25%      50%      75%     97.5%
-mu   1.699485  1.77526  1.80658  1.83650   1.91095
-s2   0.009078  0.01488  0.02099  0.03033   0.07062
-tau 14.160868 32.96990 47.64151 67.20633 110.15611</code></pre>
+mu   1.701392  1.77284  1.80630  1.83806   1.91875
+s2   0.008419  0.01503  0.02088  0.02973   0.06959
+tau 14.370054 33.63988 47.89866 66.53054 118.78000</code></pre>
 </div>
 </div>
 <p>Now we plot each with their priors:</p>

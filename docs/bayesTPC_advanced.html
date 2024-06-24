@@ -297,7 +297,7 @@ window.Quarto = {
 </section>
 <section id="a-flexible-and-interpretable-model-for-thermal-performance-curves" class="level2">
 <h2 class="anchored" data-anchor-id="a-flexible-and-interpretable-model-for-thermal-performance-curves">A flexible and interpretable model for thermal performance curves</h2>
-<p>In this section, we introduce a new functional form for thermal performance curves called flexTPC. This model aims to be both flexible (aiming to describe unimodal TPC curves of any skewness) and interpretable (with all model parameters having a clear biological interpretation).</p>
+<p>In this section, we introduce a new functional form for thermal performance curves called flexTPC. This model aims to be both flexible (aiming to describe unimodal curves of any skewness) and interpretable (with all model parameters having a clear biological interpretation).</p>
 <p>A preprint introducing this model and showing its performance in various different datasets will be available soon. In the meantime, here’s a link to the associated <a href="https://github.com/mcruzloya/flexTPC">GitHub</a> (which will link to the preprint once it’s ready).</p>
 <p>The equation for the flexTPC model is</p>
 <p><span class="math display">\[
@@ -864,8 +864,8 @@ Thinning interval = 1
 </div>
 </div>
 </div>
-<p>Each curve we’re plotting corresponds to the flexTPC model when the parameters are fixed at the current iteration of the MCMC chain. With Bayesian methods, rather than fitting a single curve we have a posterior distribution of possible curves that are consistent with the data and priors. We can then summarize this posterior distribution with e.g.&nbsp;the median and 95% credible interval y-axis value at each temperature in our grid.</p>
-<p>Now we can plot the medians and 95% credible intervals for each of these temperature values for all antibiotic conditions.</p>
+<p>Each curve we’re plotting corresponds to the flexTPC model when the parameters are fixed at the current iteration of the MCMC chain. With Bayesian methods, rather than fitting a single curve we have a posterior distribution of possible curves that are consistent with the data and priors.</p>
+<p>Now we can plot the medians (or means) and 95% credible interval at each temperature value in our grid for all antibiotic conditions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nodrug<span class="sc">$</span>T, nodrug<span class="sc">$</span>OD, <span class="at">xlab=</span><span class="st">"Temperature [°C]"</span>, <span class="at">ylab=</span><span class="st">"OD"</span>, <span class="at">main=</span><span class="st">"No drug"</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">50</span>))</span>

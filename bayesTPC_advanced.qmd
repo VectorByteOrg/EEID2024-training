@@ -76,7 +76,7 @@ Some of the shapes you get when adding antibiotics do not look like typical TPCs
 
 ## A flexible and interpretable model for thermal performance curves
 
-In this section, we introduce a new functional form for thermal performance curves called flexTPC. This model aims to be both flexible (aiming to describe unimodal TPC curves of any skewness) and interpretable (with all model parameters having a clear biological interpretation).
+In this section, we introduce a new functional form for thermal performance curves called flexTPC. This model aims to be both flexible (aiming to describe unimodal curves of any skewness) and interpretable (with all model parameters having a clear biological interpretation).
 
 A preprint introducing this model and showing its performance in various different datasets will be available soon. In the meantime, here's a link to the associated [GitHub](https://github.com/mcruzloya/flexTPC) (which will link to the preprint once it's ready).
 
@@ -441,9 +441,9 @@ for(i in 1:20) {
   lines(temp, ndcurves[ , i], col=alpha('black', 0.2))
 }
 ```
-Each curve we're plotting corresponds to the flexTPC model when the parameters are fixed at the current iteration of the MCMC chain. With Bayesian methods, rather than fitting a single curve we have a posterior distribution of possible curves that are consistent with the data and priors. We can then summarize this posterior distribution with e.g. the median and 95% credible interval y-axis value at each temperature in our grid.
+Each curve we're plotting corresponds to the flexTPC model when the parameters are fixed at the current iteration of the MCMC chain. With Bayesian methods, rather than fitting a single curve we have a posterior distribution of possible curves that are consistent with the data and priors.
 
-Now we can plot the medians and 95% credible intervals for each of these temperature values for all antibiotic conditions.
+Now we can plot the medians (or means) and 95% credible interval at each temperature value in our grid for all antibiotic conditions.
 
 ```{r}
 par(mfrow=c(2,2))
