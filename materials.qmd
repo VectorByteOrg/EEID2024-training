@@ -84,6 +84,8 @@ We are assuming familiarity with R basics as well as at least introductory stati
 ## Advanced features in `bayesTPC`
 
 -   [Practical](bayesTPC_advanced.qmd)
+-   Datasets:
+    -   [Antibiotic data](ab_data.csv)
 
 
 <br> <br>
