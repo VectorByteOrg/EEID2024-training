@@ -36,7 +36,7 @@ library(scales)
 
 ## Thermal performance curves under antibiotics
 
-Let's take a look at a dataset of the temperature-dependence of the growth of the bacterium *Escherichia coli* in the presence of various antibiotic backgrounds (data originally from this [study](https://journals.asm.org/doi/full/10.1128/msystems.00228-21)).
+Let's take a look at a [dataset](ab_data.csv) of the temperature-dependence of the growth of the bacterium *Escherichia coli* in the presence of various antibiotic backgrounds (data originally from this [study](https://journals.asm.org/doi/full/10.1128/msystems.00228-21)).
 
 ```{r}
 abdata <- read.csv("ab_data.csv")
@@ -189,7 +189,7 @@ We want to add the flexTPC functional form to bayesTPC in order to fit this data
 
 ### Writing down an expression for the flexTPC functional form
 
-Every functional form in bayesTPC needs to be written down as an expression in R. Let's start by writing down an expression for the flexTPC equation.
+Every functional form in bayesTPC needs to be written down as an expression in R. Let's start by writing down an expression for the flexTPC equation. In order to avoid some numerical issues, we'll actually write it in a slightly different way than shown in the equation above. It is not important to understand how these two forms are related, but here's an [explanation](flexTPC_code_equation.pdf) if you're curious (you can safely skip this). 
 
 ```{r}
 ## Note: This looks a little different from the equation as written above, but is
@@ -318,7 +318,7 @@ However, most of the parameters show good mixing and the TPCs we get look reason
 
 Before proceeding with the analysis, we should probably plot the curves along with the data. However, we will do this a little bit later in this practical, since we want to show how to do this directly from the MCMC samples to see how we can customize our plots.
 
-When using MCMC methods, we obtain samples from the posterior distribution of the parameters in our model. For example, let's take a look at the first few samples from the condition with no antibiotics.
+When using MCMC methods, we obtain samples from the posterior distribution of the parameters in our model from our MCMC chain. For example, let's take a look at the first few samples from the condition with no antibiotics.
 
 ```{r}
 head(nodrugFit$samples)
@@ -390,7 +390,7 @@ mean(T_opt_samples)
 quantile(T_opt_samples, c(0.025, 0.5, 0.975))
 ```
 
-(Optional exercise: Try calculating the posterior distribution for the optimal temperature of the TPC for a condition where antibiotics are present.)
+(Optional exercise: Try calculating the posterior distribution for the optimal temperature of the TPC for a different condition where antibiotics are present.)
 
 ## Posterior distribution of TPC values at specific temperatures
 
@@ -406,17 +406,18 @@ It can be useful to calculate these values directly if we want to customize our 
 ## Grid of temperatures to use to plot the TPCs.
 temp <- seq(11, 49, 0.1)
 
-# FlexTPC equation. This is equivalent to the equation shown in the visualization above, although it's written a little differently.
+# FlexTPC equation. This is equivalent to the equation shown above, although it's written a little differently.
 flexTPC <- function(T, Tmin, Tmax, rmax, alpha, beta) {
-  s <- alpha * (1 - alpha) / beta^2
   Tidx <- (T > Tmin) & (T < Tmax)
   result <- rep(0, length(T))
-  result[Tidx] <- rmax * exp(s *(alpha * log((T[Tidx] - Tmin) / alpha ) +
+  result[Tidx] <- rmax * exp(alpha * (1 - alpha) / beta^2 *(alpha * log((T[Tidx] - Tmin) / alpha ) +
                              (1 - alpha) * log((Tmax - T[Tidx]) / ( 1 - alpha) )
                            - log(Tmax - Tmin)))
   return(result)
 }
 
+## Here we apply the flexTPC equation to the parameter values at each iteration of the MCMC chain,
+## evaluated at each temperature in our grid.
 ndcurves <- apply(nodrugFit$samples, 1, function(x) flexTPC(temp, x[['T_min']], x[['T_max']],
                                                           x[['r_max']], x[['alpha']], x[['beta']]))
 GENcurves <- apply(GENFit$samples, 1, function(x) flexTPC(temp, x[['T_min']], x[['T_max']],
@@ -428,18 +429,30 @@ bothcurves <- apply(bothFit$samples, 1, function(x) flexTPC(temp, x[['T_min']], 
 
 ```
 
-Now we have posterior samples for the TPC (y-axis) value at each of the (x-axis) temperature values in our grid. We can now plot the medians and 95% credible intervals for each of these values.
+Now we have a posterior sample for the TPC y-axis value at each of the (x-axis) temperature values in our grid. To clarify this, let's plot a few of these samples.
 
-(Note: Please make sure you have the `scales` package, as we'll need it in order to make partially transparent shaded regions for credible intervals).
+(Note: Please make sure you have the `scales` package, as we'll need it in order to make partially transparent colors for some of the plots below).
+
+```{r}
+par(mfrow=c(1,1))
+plot(nodrug$T, nodrug$OD, xlab="Temperature [°C]", ylab="OD", main="No drug", ylim=c(0, 1), xlim=c(10, 50))
+## We're plotting the curves that correspond to the first 20 samples in the chain (after removing the burnin samples).
+for(i in 1:20) {
+  lines(temp, ndcurves[ , i], col=alpha('black', 0.2))
+}
+```
+Each curve we're plotting corresponds to the flexTPC model when the parameters are fixed at the current iteration of the MCMC chain. With Bayesian methods, rather than fitting a single curve we have a posterior distribution of possible curves that are consistent with the data and priors. We can then summarize this posterior distribution with e.g. the median and 95% credible interval y-axis value at each temperature in our grid.
+
+Now we can plot the medians and 95% credible intervals for each of these temperature values for all antibiotic conditions.
 
 ```{r}
 par(mfrow=c(2,2))
 plot(nodrug$T, nodrug$OD, xlab="Temperature [°C]", ylab="OD", main="No drug", ylim=c(0, 1), xlim=c(10, 50))
 
-lines(temp, apply(ndcurves, 1, median), col='black', lwd=2)
+lines(temp, apply(ndcurves, 1, median), col='black', lwd=2) # Plot median of curves at each temperature in grid.
 polygon(c(temp, rev(temp)), c(apply(ndcurves, 1, quantile, 0.025),
                                 rev(apply(ndcurves, 1, quantile, 0.975))), 
-        col=alpha("black", 0.3), lty=0)
+        col=alpha("black", 0.3), lty=0) # Plot shaded region with 95% credible interval.
 
 plot(GEN$T, GEN$OD, xlab="Temperature [°C]", ylab="OD", main="GEN", ylim=c(0, 1), xlim=c(10, 50))
 
@@ -502,7 +515,7 @@ polygon(c(temp, rev(temp)), c(apply(bothcurves, 1, quantile, 0.025),
 
 Here, the curve with no antibiotics is shown in black. We can see that the GEN+ERY (purple) curve looks very similar to the curve with only ERY (green). In both cases, the number of bacteria is reduced more sharply at low temperatures. The TPC for GEN (blue) looks very different, reducing the number of bacteria more sharply at high temperatures.
 
-Note that we could use the same functional form (the flexTPC equation) for all of these conditions despite their different shapes. Using a flexible model allows us to directly compare the inferred parameters thermal performance curves that vary in shape like in this example.
+Note that we could use the same functional form (the flexTPC equation) for all of these conditions despite their different shapes. Using a flexible model allows us to directly compare the inferred parameters of thermal performance curves that vary in shape like in this example.
 
 ## Model comparison
 

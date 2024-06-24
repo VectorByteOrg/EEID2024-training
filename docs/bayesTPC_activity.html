@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.5.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EEID2024 - Introduction to Bayesian Methods</title>
+<title>EEID2024 – Introduction to Bayesian Methods</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -160,7 +160,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -183,7 +183,7 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -228,7 +228,7 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -331,7 +331,7 @@ window.Quarto = {
 <p>Notice that we follow a convention here treating the development rate as 1/development time. This is a common assumption (although it is formally only valid if we believe that development times are exponentially distributed). Often mathematical models assume exponentially distributed traits, and so this is why the data are modeled in this fashion. We will show this approach here, as it is common, but do not advocate for this in general.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-plotData" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotData" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotData-1.png" class="img-fluid figure-img" width="768">
@@ -359,7 +359,7 @@ q T (T-T_0) \sqrt{T_m-T} &amp; \text {if } T_0 &lt; T &lt;T_m \\
 0 &amp;\text{if } T \geq T_m . \end{cases}
 </span> In both models, <span class="math inline">T_0</span> is the lower thermal limit, <span class="math inline">T_m</span> is the upper thermal limit (i.e., where the trait value goes to zero on either end), and <span class="math inline">q&gt;0</span> determines the curvature, and so with the other parameters determines the height of the curve (i.e., value of the trait at the optimum temperature). Note that above we’re assuming that the quadratic must be concave down (hence the negative sign), and that the performance goes to zero outside of the thermal limits. In some cases we instead use a concave-up quadratic, although it must be parameterized differently.</p>
 <p>We include eight common TPC models (listed with <code>get_models()</code>) in the package (<a href="#tbl-TPCs" class="quarto-xref">Table&nbsp;1</a>). Users can obtain the default specification and priors for these models with <code>get_default_model_specification()</code>. The package also includes linear and quadratic formulations for Bernoulli, binomial, and Poisson GLMs, assuming canonical link functions .</p>
-<div id="tbl-TPCs" class="quarto-float anchored">
+<div id="tbl-TPCs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-TPCs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Thermal performance curves included in <code>bayesTPC</code>.
@@ -485,7 +485,7 @@ sigma.sq 16.791 17.711 17.078       dexp(1)</code></pre>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>)<span class="sc">+</span>.<span class="dv">1</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(adult_life_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotTrace1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotTrace1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotTrace1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotTrace1-1.png" class="img-fluid figure-img" width="768">
@@ -503,7 +503,7 @@ Figure&nbsp;2: Traceplots for the three parameters of the Briere TPC and the obs
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>myburn<span class="ot">&lt;-</span><span class="dv">3000</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(adult_life_fit, <span class="at">burn=</span>myburn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotTraceBurn1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotTraceBurn1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotTraceBurn1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotTraceBurn1-1.png" class="img-fluid figure-img" width="768">
@@ -538,7 +538,7 @@ Figure&nbsp;3: Traceplots for the three parameters of the Briere TPC and the obs
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>)<span class="sc">+</span>.<span class="dv">1</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(adult_life_fit, <span class="at">burn=</span>myburn, <span class="at">legend_position =</span> <span class="st">"topright"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotPP1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotPP1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotPP1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotPP1-1.png" class="img-fluid figure-img" width="768">
@@ -557,7 +557,7 @@ Figure&nbsp;4: Marginal prior/posterior for the three parameters of the Briere T
 <p>After we have established appropriate burn-in values, we can use <code>plot()</code>, <code>posterior_predictive()</code>, and <code>plot_prediction()</code> to examine the fit of the model in two ways. The defaults for the <code>plot()</code> function plots the median and 95% Highest Posterior Density (HPD) interval of the <em>fitted function</em> (i.e., plugging the samples into the TPC function, and calculating the median and HPD interval at all evaluated temperatures). In contrast, the <code>posterior_predictive()</code> function uses simulation to draw points from the posterior predictive distribution, and so it includes both the samples describing the TPC function and the observational model. It then uses these samples to calculate the mean/median and the HPD interval of those simulated points. Both kinds of plots are shown in <a href="#fig-plotFit1" class="quarto-xref">Figure&nbsp;5</a> for comparison.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-plotFit1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotFit1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotFit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotFit1-1.png" class="img-fluid figure-img" width="768">
@@ -574,7 +574,7 @@ Figure&nbsp;5: Comparison of the plots produced by the <code>plot()</code> funct
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesTPC_ipairs</span>(adult_life_fit, <span class="at">burn=</span>myburn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotJoint1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-plotJoint1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotJoint1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotJoint1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576">
@@ -694,7 +694,7 @@ attr(,"Probability")
 <p>However in this case, although the traceplots look ok (after a burnin) the fits are very poor (<a href="#fig-plotDevRate1" class="quarto-xref">Figure&nbsp;7</a>)</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-plotDevRate1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotDevRate1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotDevRate1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotDevRate1-1.png" class="img-fluid figure-img" width="768">
@@ -711,7 +711,7 @@ Figure&nbsp;7: Traceplots for the three parameters of the Briere TPC and the obs
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>)<span class="sc">+</span>.<span class="dv">1</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ppo_plot</span>(dev_rate_fit, <span class="at">burn=</span>myburn, <span class="at">legend_position =</span> <span class="st">"topright"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plotPP2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotPP2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotPP2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotPP2-1.png" class="img-fluid figure-img" width="768">
@@ -737,7 +737,7 @@ Figure&nbsp;8: Marginal prior/posterior for the three parameters of the Briere T
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-plotDevRate2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotDevRate2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotDevRate2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotDevRate2-1.png" class="img-fluid figure-img" width="768">
@@ -816,7 +816,7 @@ Priors:
 
 Max. A Post. Parameters: 
     T_max     T_min         q  sigma.sq  log_prob 
-  56.0191   16.1786    0.0004    0.0003 1855.7859 
+  55.7981   16.1836    0.0004    0.0003 1855.7829 
 
 MCMC Results:
 Iterations = 1:7000
@@ -828,24 +828,24 @@ Sample size per chain = 7000
    plus standard error of the mean:
 
               Mean        SD  Naive SE Time-series SE
-T_max    5.593e+01 1.971e+00 2.356e-02      8.182e-02
-T_min    1.620e+01 3.460e-01 4.135e-03      1.309e-02
-q        3.639e-04 3.881e-05 4.639e-07      1.637e-06
-sigma.sq 2.869e-04 1.552e-05 1.855e-07      1.925e-07
+T_max    5.602e+01 1.920e+00 2.295e-02      7.460e-02
+T_min    1.618e+01 3.397e-01 4.060e-03      1.231e-02
+q        3.617e-04 3.715e-05 4.440e-07      1.511e-06
+sigma.sq 2.866e-04 1.569e-05 1.875e-07      1.939e-07
 
 2. Quantiles for each variable:
 
               2.5%       25%       50%       75%     97.5%
-T_max    5.207e+01 5.450e+01 5.593e+01 5.741e+01 5.960e+01
-T_min    1.556e+01 1.595e+01 1.619e+01 1.644e+01 1.687e+01
-q        3.020e-04 3.342e-04 3.608e-04 3.897e-04 4.493e-04
-sigma.sq 2.584e-04 2.767e-04 2.863e-04 2.970e-04 3.196e-04</code></pre>
+T_max    5.236e+01 5.470e+01 5.596e+01 5.741e+01 5.959e+01
+T_min    1.551e+01 1.594e+01 1.619e+01 1.641e+01 1.683e+01
+q        3.007e-04 3.338e-04 3.597e-04 3.850e-04 4.411e-04
+sigma.sq 2.576e-04 2.756e-04 2.861e-04 2.968e-04 3.192e-04</code></pre>
 </div>
 </div>
 <p>We again plot the chains of the three main TPC parameters and the standard deviation of the normal observation model:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-plotDevRate3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plotDevRate3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plotDevRate3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="bayesTPC_activity_files/figure-html/fig-plotDevRate3-1.png" class="img-fluid figure-img" width="768">
@@ -867,7 +867,7 @@ Figure&nbsp;10: Traceplots for the three parameters of the quadratic TPC and the
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>bayesTPC<span class="sc">::</span><span class="fu">get_WAIC</span>(dev_rate_fit_Quad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        WAIC         lppd        pWAIC 
--3717.409980  1862.623979     3.918989 </code></pre>
+-3717.408008  1862.640977     3.936974 </code></pre>
 </div>
 </div>
 <p>In this case the WAIC for the Briere fit is more negative and so is the preferred model.</p>
@@ -965,18 +965,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1008,7 +997,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1016,7 +1027,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
